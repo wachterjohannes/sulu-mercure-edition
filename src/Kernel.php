@@ -11,6 +11,7 @@ namespace App;
  * with this source code in the file LICENSE.
  */
 
+use App\Model\Story\Story;
 use FOS\HttpCache\SymfonyCache\HttpCacheProvider;
 use Sulu\Bundle\HttpCacheBundle\Cache\SuluHttpCache;
 use Sulu\Component\HttpKernel\SuluKernel;
@@ -47,5 +48,15 @@ class Kernel extends SuluKernel implements HttpCacheProvider
         }
 
         return $this->httpCache;
+    }
+
+    protected function getKernelParameters()
+    {
+        return array_merge(
+            parent::getKernelParameters(),
+            [
+                'app.model.story.class' => Story::class,
+            ]
+        );
     }
 }

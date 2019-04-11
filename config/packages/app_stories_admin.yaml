@@ -1,0 +1,6 @@
+sulu_admin:
+    resources:
+        stories:
+            routes:
+                list: 'app.get_stories'
+                detail: 'app.get_story'

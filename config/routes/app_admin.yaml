@@ -1,0 +1,4 @@
+contingents:
+    type: rest
+    resource: App\Controller\StoryController
+    name_prefix: app.

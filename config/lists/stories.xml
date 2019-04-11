@@ -1,0 +1,16 @@
+<?xml version="1.0" ?>
+<list xmlns="http://schemas.sulu.io/list-builder/list">
+    <key>stories</key>
+
+    <properties>
+        <property name="id" visibility="no" translation="app.id" searchability="yes">
+            <field-name>id</field-name>
+            <entity-name>%app.model.story.class%</entity-name>
+        </property>
+
+        <property name="title" visibility="always" translation="app.title" searchability="yes">
+            <field-name>title</field-name>
+            <entity-name>%app.model.story.class%</entity-name>
+        </property>
+    </properties>
+</list>

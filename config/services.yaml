@@ -9,11 +9,15 @@ services:
         autowire: true      # Automatically injects dependencies in your services.
         autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
 
+    _instanceof:
+        Sulu\Bundle\AdminBundle\Admin\Admin:
+            tags: ['sulu.admin', {name: 'sulu.context', context: 'admin'}]
+
     # makes classes in src/ available to be used as services
     # this creates a service per class whose id is the fully-qualified class name
     App\:
         resource: '../src/*'
-        exclude: '../src/{DependencyInjection,Entity,Migrations,Tests,Kernel.php}'
+        exclude: '../src/{DependencyInjection,Entity,Model,Migrations,Tests,Kernel.php}'
 
     # controllers are imported separately to make sure services can be injected
     # as action arguments even if you don't extend any base controller class
@@ -21,5 +25,9 @@ services:
         resource: '../src/Controller'
         tags: ['controller.service_arguments']
 
-    # add more service definitions when explicit configuration is needed
-    # please note that last definitions always *replace* previous ones
+    App\Model\:
+        resource: '../src/Model/*'
+        exclude: '../src/Model/{Message,Query,Story.php}'
+
+    App\Model\Story\StoryRepositoryInterface:
+        alias: App\Repository\StoryRepository
