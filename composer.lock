@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "785f4f8cc5c755118d97be4d3ac366ab",
+    "content-hash": "50553abb58871c770cb7901a171ad735",
     "packages": [
         {
             "name": "aferrandini/urlizer",
@@ -2213,6 +2213,60 @@
                 "url"
             ],
             "time": "2018-12-04T20:46:45+00:00"
+        },
+        {
+            "name": "handcraftedinthealps/redis-transport-bundle",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/handcraftedinthealps/RedisTransportBundle.git",
+                "reference": "af19b7d6026c3ae80fd96a88a393cabbf00533d2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/handcraftedinthealps/RedisTransportBundle/zipball/af19b7d6026c3ae80fd96a88a393cabbf00533d2",
+                "reference": "af19b7d6026c3ae80fd96a88a393cabbf00533d2",
+                "shasum": ""
+            },
+            "require": {
+                "ext-redis": "^4.2",
+                "php": "^7.1",
+                "symfony/config": "^3.4 || ^4.0",
+                "symfony/dependency-injection": "^3.4 || ^4.0",
+                "symfony/messenger": "^4.2",
+                "symfony/property-access": "^3.4 || ^4.0",
+                "symfony/serializer": "^3.4 || ^4.0"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^2.13",
+                "phpstan/phpstan": "^0.10.5",
+                "phpstan/phpstan-symfony": "^0.10.2",
+                "phpunit/phpunit": "^7.4",
+                "symfony/console": "^3.4 || ^4.0",
+                "symfony/debug": "^3.4 || ^4.0",
+                "symfony/framework-bundle": "^3.4 || ^4.2",
+                "symfony/yaml": "^3.4 || ^4.0"
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "branch-alias": {
+                    "dev-develop": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "HandcraftedInTheAlps\\Bundle\\RedisTransportBundle\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "A symfony messenger transport implementation for redis streams.",
+            "time": "2019-01-24T13:31:46+00:00"
         },
         {
             "name": "imagine/imagine",

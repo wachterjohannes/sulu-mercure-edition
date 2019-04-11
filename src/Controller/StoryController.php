@@ -16,6 +16,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Messenger\MessageBusInterface;
+use Symfony\Component\Messenger\Stamp\SentStamp;
 
 class StoryController implements ClassResourceInterface
 {
@@ -51,7 +52,10 @@ class StoryController implements ClassResourceInterface
     public function postAction(Request $request): Response
     {
         $message = new CreateStoryMessage($request->request->get('title'));
-        $this->messageBus->dispatch($message);
+        $envelope = $this->messageBus->dispatch($message);
+        if (!$envelope->all(SentStamp::class)) {
+            return $this->handleView($this->view($message->getResult()));
+        }
 
         $this->addLink($request, new Link('mercure', $this->defaultHub));
         $this->addLink($request, new Link('topic', 'http://sulu-mercure.localhost/stories/' . $message->getId()));
@@ -73,7 +77,10 @@ class StoryController implements ClassResourceInterface
     public function putAction(string $id, Request $request): Response
     {
         $message = new ModifyStoryMessage($id, $request->request->get('title'));
-        $this->messageBus->dispatch($message);
+        $envelope = $this->messageBus->dispatch($message);
+        if (!$envelope->all(SentStamp::class)) {
+            return $this->handleView($this->view($message->getResult()));
+        }
 
         $this->addLink($request, new Link('mercure', $this->defaultHub));
         $this->addLink($request, new Link('topic', 'http://sulu-mercure.localhost/stories/' . $id));

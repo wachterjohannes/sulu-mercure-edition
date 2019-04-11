@@ -31,6 +31,8 @@ class ModifyStoryMessageHandler implements MessageHandlerInterface
         $story = $this->repository->findById($message->getId());
         $story->setTitle($message->getTitle());
 
+        $message->setResult($story);
+
         $update = new Update(
             'http://sulu-mercure.localhost/stories/' . $message->getId(),
             json_encode(['id' => $story->getId(), 'title' => $story->getTitle()])

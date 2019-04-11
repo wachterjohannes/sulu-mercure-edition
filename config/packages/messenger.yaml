@@ -4,6 +4,11 @@ framework:
             command_bus:
                 middleware:
                     - doctrine_transaction
+        transports:
+            async:
+                dsn: '%env(MESSENGER_TRANSPORT_DSN)%'
+        routing:
+            'App\Model\Story\Message\ModifyStoryMessage': async
 
 services:
     messenger.middleware.doctrine_transaction:
