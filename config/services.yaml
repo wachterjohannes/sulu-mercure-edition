@@ -24,6 +24,8 @@ services:
     App\Controller\:
         resource: '../src/Controller'
         tags: ['controller.service_arguments']
+        bind:
+            $defaultHub: '%mercure.default_hub%'
 
     App\Model\:
         resource: '../src/Model/*'
