@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "50553abb58871c770cb7901a171ad735",
+    "content-hash": "c2fbdf3a73978446e3ea0aa3a5e6afca",
     "packages": [
         {
             "name": "aferrandini/urlizer",
@@ -2955,6 +2955,64 @@
             "time": "2016-06-18T12:28:04+00:00"
         },
         {
+            "name": "lcobucci/jwt",
+            "version": "3.2.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/lcobucci/jwt.git",
+                "reference": "82be04b4753f8b7693b62852b7eab30f97524f9b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/lcobucci/jwt/zipball/82be04b4753f8b7693b62852b7eab30f97524f9b",
+                "reference": "82be04b4753f8b7693b62852b7eab30f97524f9b",
+                "shasum": ""
+            },
+            "require": {
+                "ext-openssl": "*",
+                "php": ">=5.5"
+            },
+            "require-dev": {
+                "mdanter/ecc": "~0.3.1",
+                "mikey179/vfsstream": "~1.5",
+                "phpmd/phpmd": "~2.2",
+                "phpunit/php-invoker": "~1.1",
+                "phpunit/phpunit": "~4.5",
+                "squizlabs/php_codesniffer": "~2.3"
+            },
+            "suggest": {
+                "mdanter/ecc": "Required to use Elliptic Curves based algorithms."
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.1-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Lcobucci\\JWT\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Luís Otávio Cobucci Oblonczyk",
+                    "email": "lcobucci@gmail.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A simple library to work with JSON Web Token and JSON Web Signature",
+            "keywords": [
+                "JWS",
+                "jwt"
+            ],
+            "time": "2018-11-11T12:22:26+00:00"
+        },
+        {
             "name": "massive/build-bundle",
             "version": "0.4.0",
             "source": {
@@ -4824,7 +4882,7 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/wachterjohannes/sulu.git",
-                "reference": "071ed436c2e38fe226b9124e9f01f461bcb43a06"
+                "reference": "c9595a623b26506d7477b6b57cff886a3a6f8ab0"
             },
             "require": {
                 "aferrandini/urlizer": "~1.0.0",
@@ -5000,7 +5058,7 @@
                 "core",
                 "sulu"
             ],
-            "time": "2019-04-11T18:09:25+00:00"
+            "time": "2019-04-14T09:29:35+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -9623,7 +9681,8 @@
     "prefer-lowest": false,
     "platform": {
         "php": "^7.1.3",
-        "ext-iconv": "*"
+        "ext-iconv": "*",
+        "ext-redis": "^4.2"
     },
     "platform-dev": []
 }

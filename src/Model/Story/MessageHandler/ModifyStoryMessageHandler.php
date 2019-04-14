@@ -2,7 +2,9 @@
 
 namespace App\Model\Story\MessageHandler;
 
+use App\Common\Update\UpdateCollector;
 use App\Model\Story\Message\ModifyStoryMessage;
+use App\Model\Story\Story;
 use App\Model\Story\StoryRepositoryInterface;
 use Symfony\Component\Mercure\Publisher;
 use Symfony\Component\Mercure\Update;
@@ -16,29 +18,31 @@ class ModifyStoryMessageHandler implements MessageHandlerInterface
     private $repository;
 
     /**
-     * @var Publisher
+     * @var UpdateCollector
      */
-    private $publisher;
+    private $updateCollector;
 
-    public function __construct(StoryRepositoryInterface $repository, Publisher $publisher)
+    public function __construct(StoryRepositoryInterface $repository, UpdateCollector $updateCollector)
     {
         $this->repository = $repository;
-        $this->publisher = $publisher;
+        $this->updateCollector = $updateCollector;
     }
 
-    public function __invoke(ModifyStoryMessage $message): void
+    public function __invoke(ModifyStoryMessage $message): Story
     {
         $story = $this->repository->findById($message->getId());
         $story->setTitle($message->getTitle());
 
-        $message->setResult($story);
-
         $update = new Update(
-            'http://sulu-mercure.localhost/stories/' . $message->getId(),
+            [
+                'http://sulu-mercure.localhost/stories/' . $message->getId(),
+                'http://sulu-mercure.localhost/',
+            ],
             json_encode(['id' => $story->getId(), 'title' => $story->getTitle()])
         );
 
-        // The Publisher service is an invokable object
-        $this->publisher->__invoke($update);
+        $this->updateCollector->push($update);
+
+        return $story;
     }
 }

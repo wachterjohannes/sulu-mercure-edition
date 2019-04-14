@@ -26,6 +26,7 @@ services:
         tags: ['controller.service_arguments']
         bind:
             $defaultHub: '%mercure.default_hub%'
+            $secretKey: '%env(MERCURE_JWT_SECRET)%'
 
     App\Model\:
         resource: '../src/Model/*'

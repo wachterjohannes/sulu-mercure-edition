@@ -3,6 +3,7 @@ framework:
         buses:
             command_bus:
                 middleware:
+                    - App\Common\Update\UpdateMiddleware
                     - doctrine_transaction
         transports:
             async:

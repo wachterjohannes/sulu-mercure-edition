@@ -2,6 +2,7 @@
 
 namespace App\Model\Story\MessageHandler;
 
+use App\Common\Update\UpdateCollector;
 use App\Model\Story\Message\RemoveStoryMessage;
 use App\Model\Story\StoryRepositoryInterface;
 use Symfony\Component\Mercure\Publisher;
@@ -16,14 +17,14 @@ class RemoveStoryMessageHandler implements MessageHandlerInterface
     private $repository;
 
     /**
-     * @var Publisher
+     * @var UpdateCollector
      */
-    private $publisher;
+    private $updateCollector;
 
-    public function __construct(StoryRepositoryInterface $repository, Publisher $publisher)
+    public function __construct(StoryRepositoryInterface $repository, UpdateCollector $updateCollector)
     {
         $this->repository = $repository;
-        $this->publisher = $publisher;
+        $this->updateCollector = $updateCollector;
     }
 
     public function __invoke(RemoveStoryMessage $message): void
@@ -32,11 +33,13 @@ class RemoveStoryMessageHandler implements MessageHandlerInterface
         $this->repository->remove($story);
 
         $update = new Update(
-            'http://sulu-mercure.localhost/stories/' . $message->getId(),
+            [
+                'http://sulu-mercure.localhost/stories/' . $message->getId(),
+                'http://sulu-mercure.localhost/',
+            ],
             json_encode(null)
         );
 
-        // The Publisher service is an invokable object
-        $this->publisher->__invoke($update);
+        $this->updateCollector->push($update);
     }
 }
